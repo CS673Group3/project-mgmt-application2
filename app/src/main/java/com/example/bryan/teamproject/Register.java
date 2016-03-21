@@ -40,53 +40,55 @@ public class Register extends AppCompatActivity {
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //v.setEnabled(false);
+                v.setEnabled(false);
                 pattern = Pattern.compile(EMAIL_PATTERN);
 
-                if (v == signUp) {
-                    String FirstName = userName.getText().toString();
-                    String LastName = lastname.getText().toString();
-                    String Username = userName.getText().toString();
-                    String Email = email.getText().toString();
-                    String Pass = passWord.getText().toString();
-                    String confPass = confirmPassWord.getText().toString();
-                    if (FirstName.length() == 0 || LastName.length() == 0 || Username.length() == 0 || Email.length() == 0 || Pass.length() == 0 || confPass.length() == 0) {
-                        userName.requestFocus();
-                        passWord.requestFocus();
-                        confirmPassWord.requestFocus();
-                        firstname.requestFocus();
-                        lastname.requestFocus();
-                        email.requestFocus();
-                        userName.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER Username");
-                        passWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER Password");
-                        confirmPassWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER Password");
-                        firstname.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER FirstName");
-                        lastname.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER LastName");
-                        email.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER YOUR Email");
-                    } else if (FirstName.matches("[A-Z][a-zA-Z]*") || LastName.matches("[A-Z][a-zA-Z]*") || Username.matches("[A-Z][a-zA-Z]*")) {
-                        firstname.requestFocus();
-                        lastname.requestFocus();
-                        userName.requestFocus();
-                        firstname.setError("ENTER ONLY ALPHABETICAL CHARACTER");
-                        lastname.setError("ENTER ONLY ALPHABETICAL  CHARACTER");
-                        userName.setError("ENTER ONLY ALPHABETICAL  CHARACTER");
-                    } else if (Pass.length() < 8 || confPass.length() < 8) {
-                        passWord.requestFocus();
-                        confirmPassWord.requestFocus();
-                        passWord.setError("ENTER A PASSWORD OF AT LEAST 8 CHARACTERS");
-                    } else if (!confPass.equals(Pass)) {
-                        confirmPassWord.requestFocus();
-                        confirmPassWord.setError("PASSWORDS ARE NOT MATCHING");
-                    } else {
-                        if (validateEmail(Email) == true) {
-                            User newUser = new User(FirstName, LastName, Username, Pass, Email);
-                            registerNewUser(newUser);
-                            Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
+                switch (v.getId()) {
+                    case R.id.SignUpbtn:
+                        String FirstName = userName.getText().toString();
+                        String LastName = lastname.getText().toString();
+                        String Username = userName.getText().toString();
+                        String Email = email.getText().toString();
+                        String Pass = passWord.getText().toString();
+                        String confPass = confirmPassWord.getText().toString();
+                        if (FirstName.length() == 0 || LastName.length() == 0 || Username.length() == 0 || Email.length() == 0 || Pass.length() == 0 || confPass.length() == 0) {
+                            userName.requestFocus();
+                            passWord.requestFocus();
+                            confirmPassWord.requestFocus();
+                            firstname.requestFocus();
+                            lastname.requestFocus();
+                            email.requestFocus();
+                            userName.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER Username");
+                            passWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER Password");
+                            confirmPassWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER Password");
+                            firstname.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER FirstName");
+                            lastname.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER LastName");
+                            email.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER YOUR Email");
+                        } else if (FirstName.matches("[A-Z][a-zA-Z]*") || LastName.matches("[A-Z][a-zA-Z]*") || Username.matches("[A-Z][a-zA-Z]*")) {
+                            firstname.requestFocus();
+                            lastname.requestFocus();
+                            userName.requestFocus();
+                            firstname.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+                            lastname.setError("ENTER ONLY ALPHABETICAL  CHARACTER");
+                            userName.setError("ENTER ONLY ALPHABETICAL  CHARACTER");
+                        } else if (Pass.length() < 8 || confPass.length() < 8) {
+                            passWord.requestFocus();
+                            confirmPassWord.requestFocus();
+                            passWord.setError("ENTER A PASSWORD OF AT LEAST 8 CHARACTERS");
+                        } else if (!confPass.equals(Pass)) {
+                            confirmPassWord.requestFocus();
+                            confirmPassWord.setError("PASSWORDS ARE NOT MATCHING");
+                        } else {
+                            if (validateEmail(Email) == true) {
+                                User newUser = new User(FirstName, LastName, Username, Pass, Email);
+                                registerNewUser(newUser);
+                                Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-
-                } else if (v == back) {
-                    goback();
+                        break;
+                    case R.id.back:
+                        goback();
+                        break;
                 }
             }
         };
@@ -98,7 +100,6 @@ public class Register extends AppCompatActivity {
 
         startActivity(new Intent(this, MainActivity.class));
     }
-
 
     private boolean validateEmail(final String hex) {
 
