@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Bryan/android-sdks/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.1_233485fbab5b2c7c4ccf6fe532ceeca7a209cfd0.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.2.1_c6514168a00a14b0a9b4629dc9cb8549570a4178.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.2.1_e6f0b86c65ed582a5d9cd4acb8e3b1ea4eef24fa.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/libs/httpcore-4.2.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5e92ec56abe188b865642a14e1a037c1253fc42e">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/httpcore-4.2.3_06c9063e2269efca279867a3f579554de508a2ef.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1_1c0ab4c06667a3371a5eeb170d3d7e3f702738be.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.17/f417d7f776d1ee5858fc04d9362aa45e9bedd26b/library-1.0.17.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f417d7f776d1ee5858fc04d9362aa45e9bedd26b">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/library-1.0.17_146e2e338ec39f62559a90704ccb0eb8516b2637.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/libs/jtds-1.2.8.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="111abf08f69f350923d34d64267a67d7367d4230">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/jtds-1.2.8_08636228b8082bcea5abcf2ce4956c37b481695d.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.2.1_85abee9a94127de380ac6ddcada41379d0732dcd.jar" />
+    </item>
+    <item
+        jar="/Users/Bryan/Documents/TeamProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="/Users/Bryan/Documents/TeamProject/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.2.1_778ddc122a8e1167980ea10574190bfd261005d2.jar" />
+    </item>
+
+</items>
