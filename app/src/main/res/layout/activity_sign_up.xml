@@ -59,9 +59,7 @@
                 android:layout_weight="1"
                 android:text="@string/person_firstname"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/black"
-
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/lastname"
@@ -223,10 +221,11 @@
 
             <Button
                 android:id="@+id/SignUpbtn"
-                android:layout_width="325dp"
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="0dp"
+                android:gravity="center|center_vertical"
                 android:onClick="setContentView"
                 android:text="@string/signUp_name"
                 android:textAllCaps="false"
