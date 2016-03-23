@@ -76,7 +76,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/Submit"
+        android:id="@+id/submit"
         android:layout_width="325dp"
         android:layout_height="70dp"
         android:layout_below="@+id/password_input"
@@ -87,14 +87,13 @@
         android:text="@string/signIn_name"
         android:textAllCaps="false"
         android:textColor="@color/black"
-
         android:textSize="25dp" />
 
     <TextView
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Submit"
+        android:layout_below="@+id/submit"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="130dp"
         android:layout_marginTop="20dp"

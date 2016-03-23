@@ -23,7 +23,7 @@ public class signin extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         userName = (EditText) findViewById(R.id.username_input);
         passWord = (EditText) findViewById(R.id.password_input);
-        signIn = (Button) findViewById(R.id.Submit);
+        signIn = (Button) findViewById(R.id.submit);
         forGot = (TextView) findViewById(R.id.forgotPassword);
         backbutton = (ImageButton) findViewById(R.id.back_SignIn);
 
@@ -31,7 +31,7 @@ public class signin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.Submit:
+                    case R.id.submit:
                         v.setEnabled(false);
                         userName.setEnabled(false);
                         passWord.setEnabled(false);
@@ -65,6 +65,9 @@ public class signin extends AppCompatActivity {
                 }
             }
         };
+        signIn.setOnClickListener(handler);
+        forGot.setOnClickListener(handler);
+        backbutton.setOnClickListener(handler);
     }
 
     private void UserLogIn(User returneduser) {

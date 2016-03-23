@@ -37,10 +37,10 @@
             android:id="@+id/Login"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_below="@+id/SignUp"
             android:onClick="setContentView"
             android:text="@string/signIn_name"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:layout_below="@+id/SignUp"/>
 
         <Button
             android:id="@+id/SignUp"
