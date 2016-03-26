@@ -16,7 +16,7 @@ public class signin extends AppCompatActivity {
     Button signIn;
     ImageButton backbutton;
     TextView forGot;
-
+    userLocalStore localStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +26,7 @@ public class signin extends AppCompatActivity {
         signIn = (Button) findViewById(R.id.submit);
         forGot = (TextView) findViewById(R.id.forgotPassword);
         backbutton = (ImageButton) findViewById(R.id.back_SignIn);
+        localStore = new userLocalStore(this);
 
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
@@ -47,15 +48,17 @@ public class signin extends AppCompatActivity {
                             passWord.requestFocus();
                             passWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER CORRECT PASSWORD");
                         } else {
-                            User user = new User(username, password, signin.this);
-                            if (user.authenticate() == true) {
-                                Toast.makeText(signin.this, "Validation Successful", Toast.LENGTH_LONG).show();
+                            User user = new User(username, password);
+
+                            if(localStore.authenticate(username, password)==true){
+                                Toast.makeText(getApplicationContext(), "Validation Successful", Toast.LENGTH_LONG).show();
                                 UserLogIn(user);
                             }
-                            else{
-                                Toast.makeText(signin.this, "Validation failed", Toast.LENGTH_LONG).show();
-                                System.out.println("User could not be validated for a token");
+
+                            else {
+                                Toast.makeText(getApplicationContext(), "User could not be validated for a token", Toast.LENGTH_LONG).show();
                             }
+
                         }
                         break;
                     case R.id.forgotPassword:
@@ -75,14 +78,12 @@ public class signin extends AppCompatActivity {
     }
 
     private void UserLogIn(User returneduser) {
-       // userLocalStore.storeUserData(returneduser);
-       // userLocalStore.setUserLoggedIn(true);
-        startActivity(new Intent(this, IceBox.class));
+        userLocalStore.storeUserData(returneduser);
+        userLocalStore.setUserLoggedIn(true);
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
     }
 
-    /**
-     * method to navigate back to main activity page
-     */
+
     private void goback() {
 
         startActivity(new Intent(this, MainActivity.class));

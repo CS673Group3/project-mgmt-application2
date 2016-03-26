@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bryan.teamproject">
-
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -19,7 +18,10 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".IceBox" />
-        <activity android:name=".signin"></activity>
+        <activity android:name=".signin"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".DashboardActivity"/>
+        <activity android:name=".ProjectInfoActivity" />
     </application>
 
 </manifest>

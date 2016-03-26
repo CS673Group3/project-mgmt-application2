@@ -80,8 +80,8 @@ public class Register extends AppCompatActivity {
                             confirmPassWord.setError("PASSWORDS ARE NOT MATCHING");
                         } else {
                             if (validateEmail(Email) == true) {
-                                User newUser = new User(FirstName, LastName, Username, Pass, Email);
-                                registerNewUser(newUser);
+                                User registeredData = new User(FirstName, LastName, Username, Pass, Email);
+                                registerNewUser(registeredData);
                                 Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
                             }
                         }

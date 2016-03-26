@@ -11,72 +11,58 @@ import android.content.Intent;
 import android.view.View.OnClickListener;
 import android.view.Menu;
 
-public class ProfileActivity extends AppCompatActivity implements OnClickListener{
+public class ProfileActivity extends AppCompatActivity {
 
     private TextView greeting_msg_txtView;
     private Button requirement_tracker_btn;
     private Button comm_tool;
     private Button issue_tracker;
-
+    userLocalStore localStore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        greeting_msg_txtView = (TextView) findViewById(R.id.profile_greeting_msg_txtView);
+        requirement_tracker_btn = (Button) findViewById(R.id.requirement_tracker_btn);
+        comm_tool = (Button) findViewById(R.id.com_tool_btn);
+        issue_tracker = (Button) findViewById(R.id.issue_tracker_btn);
+        localStore = new userLocalStore(this);
+        View.OnClickListener handler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-
-        greeting_msg_txtView = (TextView)findViewById(R.id.profile_greeting_msg_txtView);
-        greeting_msg_txtView.setText("Welcome back, " + username);
-
-        requirement_tracker_btn = (Button)findViewById(R.id.requirement_tracker_btn);
-        comm_tool = (Button)findViewById(R.id.com_tool_btn);
-        issue_tracker = (Button)findViewById(R.id.issue_tracker_btn);
-
-        requirement_tracker_btn.setOnClickListener(this);
-        comm_tool.setOnClickListener(this);
-        issue_tracker.setOnClickListener(this);
+           switch (v.getId()){
+               case R.id.requirement_tracker_btn:
+                   startActivity(new Intent(ProfileActivity.this, DashboardActivity.class));
+                   break;
+               case R.id.com_tool_btn:
+                   v.setEnabled(false);
+                   break;
+               case R.id.issue_tracker_btn:
+                   v.setEnabled(false);
+                   break;
+               }
+            }
+        };
+        requirement_tracker_btn.setOnClickListener(handler);
+        comm_tool.setOnClickListener(handler);
+        issue_tracker.setOnClickListener(handler);
     }
 
     @Override
-    public void onClick(View v){
-
-        switch(v.getId()){
-
-            case R.id.requirement_tracker_btn:
-
-                Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.com_tool_btn:
-                break;
-            case R.id.issue_tracker_btn:
-                break;
-
+    protected void onStart() {
+        super.onStart();
+        if(authenticate() == true){
+            displayUserDetails();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.profile_menu, menu);
-        return true;
+    private boolean authenticate(){
+        return localStore.getUserLoggedIn();
     }
+    private void displayUserDetails() {
+        User user = localStore.getLoggedInUser();
+        greeting_msg_txtView.setText("Welcome back,"+"\t" + user.Firstname +" \t ");
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch(item.getItemId())
-        {
-            case R.id.profile_info:
-                return true;
-            case R.id.change_password:
-                return true;
-            case R.id.log_out:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
     }
 }

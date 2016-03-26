@@ -9,7 +9,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Register">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -233,4 +235,5 @@
                 android:textSize="25dp" />
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>
