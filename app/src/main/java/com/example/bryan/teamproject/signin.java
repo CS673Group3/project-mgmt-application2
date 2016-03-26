@@ -32,7 +32,7 @@ public class signin extends AppCompatActivity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.submit:
-                        v.setEnabled(false);
+                        //v.setEnabled(false);
                         userName.setEnabled(false);
                         passWord.setEnabled(false);
                         String username = userName.getText().toString();
@@ -51,6 +51,10 @@ public class signin extends AppCompatActivity {
                             if (user.authenticate() == true) {
                                 Toast.makeText(signin.this, "Validation Successful", Toast.LENGTH_LONG).show();
                                 UserLogIn(user);
+                            }
+                            else{
+                                Toast.makeText(signin.this, "Validation failed", Toast.LENGTH_LONG).show();
+                                System.out.println("User could not be validated for a token");
                             }
                         }
                         break;
@@ -71,8 +75,8 @@ public class signin extends AppCompatActivity {
     }
 
     private void UserLogIn(User returneduser) {
-        userLocalStore.storeUserData(returneduser);
-        userLocalStore.setUserLoggedIn(true);
+       // userLocalStore.storeUserData(returneduser);
+       // userLocalStore.setUserLoggedIn(true);
         startActivity(new Intent(this, IceBox.class));
     }
 

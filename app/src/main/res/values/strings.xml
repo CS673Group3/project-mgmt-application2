@@ -21,4 +21,21 @@
     <string name="title_activity_sign_in">SignIn</string>
     <string name="title_activity_sign_up">SignUp</string>
     <string name="title_activity_ice_box">icebox</string>
+    <string name="service1">Requirement Tracker</string>
+    <string name="service2">Communication Tool</string>
+    <string name="service3">Issue Tracker</string>
+    <string name="profile_info">Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="logout">Log Out</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="project_name">Project</string>
+    <string name="project_description">Description</string>
+    <string name="project_name_txtView">Project Name</string>
+    <string name="project_description_txtView">Project Description</string>
+    <string name="create_btn">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="tab_list_fragment_txt">Hello</string>
+
+
+
 </resources>

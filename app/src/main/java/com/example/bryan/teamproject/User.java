@@ -18,6 +18,8 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 
+import java.io.Console;
+
 public class User {
     String Firstname, Lastname, username, passWord, email;
     Context context;
@@ -52,7 +54,7 @@ public class User {
         this.context = context;
     }
 
-    public boolean authenticate() {
+    /*public boolean authenticate() {
         RequestQueue queue;
         Cache cache = new DiskBasedCache(context.getCacheDir(), 1024 * 1024);
         Network network = new BasicNetwork(new HurlStack());
@@ -78,6 +80,23 @@ public class User {
         });
 // Add the request to the RequestQueue.
         queue.add(stringRequest);
+        return false;
+    }*/
+
+    public boolean authenticate(){
+        TokenTest test = new TokenTest(username, passWord);
+
+        try {
+            test.getToken();
+            System.out.println("passed: "+test.getTokenValue());
+            test.sendGet();
+           return true;
+        }
+
+        catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return false;
     }
 }
