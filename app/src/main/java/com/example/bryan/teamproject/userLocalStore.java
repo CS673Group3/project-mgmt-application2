@@ -16,50 +16,50 @@ public class userLocalStore {
 
     public static void storeUserData(User user) {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putString("Firstname", user.Firstname);
-        spEditor.putString("Lastname", user.Lastname);
+        spEditor.putString("firstname", user.Firstname);
+        spEditor.putString("lastname", user.Lastname);
         spEditor.putString("username", user.username);
         spEditor.putString("password", user.passWord);
-        spEditor.putString("Email", user.email);
-        spEditor.putString("Token", user.token);
+        spEditor.putString("email", user.email);
+        spEditor.putString("token", user.token);
         spEditor.commit();
     }
 
     public User getLoggedInUser() {
-        String firstname = userLocalDatabase.getString("firstname", "");
-        String lastname = userLocalDatabase.getString("lastname", "");
+        String firstName = userLocalDatabase.getString("firstname", "");
+        String lastName = userLocalDatabase.getString("lastname", "");
         String email = userLocalDatabase.getString("email", "");
         String username = userLocalDatabase.getString("username", "");
-        String password = userLocalDatabase.getString("password", "");
+        String password = userLocalDatabase.getString("password","");
         String token = userLocalDatabase.getString("token", "");
-        User user = new User(firstname, lastname, email, username, password, token);
-        return user;
+        User storedUser = new User(username, password, token);
+        return storedUser;
+    }
+
+    public User getNewUser(){
+        String firstName = userLocalDatabase.getString("firstname", "");
+        String lastName = userLocalDatabase.getString("lastname", "");
+        String email = userLocalDatabase.getString("email", "");
+        String username = userLocalDatabase.getString("username", "");
+        String password = userLocalDatabase.getString("password","");
+        User newUser = new User(firstName, lastName, email, username, password);
+        return newUser;
     }
 
     public boolean getUserLoggedIn() {
-        if (userLocalDatabase.getBoolean("LoggedIn", false) == true) {
+        if (userLocalDatabase.getBoolean("loggedIn",false)==true) {
             return true;
         } else {
             return false;
         }
     }
 
-    public static void setUserLoggedIn(boolean loggedIn) {
+    public static void setUserLoggedIn(boolean temp) {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putBoolean("loggedIn", loggedIn);
+        spEditor.putBoolean("loggedIn", temp);
         spEditor.commit();
     }
 
-    public static void setUserLoggedIn(String token) {
-        SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putString("Token", token);
-        spEditor.commit();
-    }
-
-    public String getUserLoggedInToken() {
-
-            return userLocalDatabase.getString("token", "");
-    }
 
     public void clearUserData() {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
@@ -72,7 +72,9 @@ public class userLocalStore {
         try {
             test.getToken();
             System.out.println("passed: " + test.getTokenValue());
-            setUserLoggedIn(test.getTokenValue());
+            User user = new User(username, password, test.getTokenValue());
+            storeUserData(user);
+            setUserLoggedIn(true);
             //test.sendGet();
             return true;
         }

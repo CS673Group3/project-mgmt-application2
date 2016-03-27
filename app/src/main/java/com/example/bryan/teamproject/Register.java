@@ -40,7 +40,7 @@ public class Register extends AppCompatActivity {
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setEnabled(false);
+                //v.setEnabled(false);
                 pattern = Pattern.compile(EMAIL_PATTERN);
 
                 switch (v.getId()) {
@@ -80,6 +80,7 @@ public class Register extends AppCompatActivity {
                             confirmPassWord.setError("PASSWORDS ARE NOT MATCHING");
                         } else {
                             if (validateEmail(Email) == true) {
+
                                 User registeredData = new User(FirstName, LastName, Username, Pass, Email);
                                 registerNewUser(registeredData);
                                 Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
@@ -109,9 +110,10 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerNewUser(User newData) {
-        //User newMember = new User(this);
+        //User newMember = new User(newData);
         //newMember.addUser(newData);
-        startActivity(new Intent(Register.this, MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), signin.class));
+
     }
 
 }

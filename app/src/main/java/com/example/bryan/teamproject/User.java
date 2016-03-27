@@ -35,15 +35,6 @@ public class User {
      * @param Username
      * @param password
      */
-    public User(String FirstName, String LastName, String Username, String password, String Email, String token) {
-        this.username = Username;
-        this.Firstname = FirstName;
-        this.Lastname = LastName;
-        this.passWord = password;
-        this.email = Email;
-        this.token = token;
-    }
-
     public User(String FirstName, String LastName, String Username, String password, String Email) {
         this.username = Username;
         this.Firstname = FirstName;
@@ -58,10 +49,10 @@ public class User {
      * @param Username
      * @param Password
      */
-    public User(String Username, String Password) {
+    public User(String Username, String Password, String token) {
         this.username = Username;
         this.passWord = Password;
-
+        this.token = token;
     }
 
 

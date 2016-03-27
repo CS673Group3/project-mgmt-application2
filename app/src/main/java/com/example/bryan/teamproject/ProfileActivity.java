@@ -26,14 +26,14 @@ public class ProfileActivity extends AppCompatActivity {
         requirement_tracker_btn = (Button) findViewById(R.id.requirement_tracker_btn);
         comm_tool = (Button) findViewById(R.id.com_tool_btn);
         issue_tracker = (Button) findViewById(R.id.issue_tracker_btn);
-        localStore = new userLocalStore(this);
+        localStore = new userLocalStore(getApplicationContext());
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
            switch (v.getId()){
                case R.id.requirement_tracker_btn:
-                   startActivity(new Intent(ProfileActivity.this, DashboardActivity.class));
+                   startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                    break;
                case R.id.com_tool_btn:
                    v.setEnabled(false);
@@ -54,15 +54,17 @@ public class ProfileActivity extends AppCompatActivity {
         super.onStart();
         if(authenticate() == true){
             displayUserDetails();
+        } else{
+            startActivity(new Intent(getApplicationContext(), signin.class));
         }
     }
 
     private boolean authenticate(){
         return localStore.getUserLoggedIn();
     }
+
     private void displayUserDetails() {
         User user = localStore.getLoggedInUser();
-        greeting_msg_txtView.setText("Welcome back,"+"\t" + user.Firstname +" \t ");
-
+        greeting_msg_txtView.setText("Welcome back,"+"\t" + user.username +"\t");
     }
 }

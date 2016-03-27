@@ -26,7 +26,7 @@ public class signin extends AppCompatActivity {
         signIn = (Button) findViewById(R.id.submit);
         forGot = (TextView) findViewById(R.id.forgotPassword);
         backbutton = (ImageButton) findViewById(R.id.back_SignIn);
-        localStore = new userLocalStore(this);
+        localStore = new userLocalStore(getApplicationContext());
 
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
@@ -48,11 +48,10 @@ public class signin extends AppCompatActivity {
                             passWord.requestFocus();
                             passWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER CORRECT PASSWORD");
                         } else {
-                            User user = new User(username, password);
 
                             if(localStore.authenticate(username, password)==true){
                                 Toast.makeText(getApplicationContext(), "Validation Successful", Toast.LENGTH_LONG).show();
-                                UserLogIn(user);
+                                UserLogIn(); //set userlogin in to true and navigate to next page
                             }
 
                             else {
@@ -77,15 +76,12 @@ public class signin extends AppCompatActivity {
         backbutton.setOnClickListener(handler);
     }
 
-    private void UserLogIn(User returneduser) {
-        userLocalStore.storeUserData(returneduser);
-        userLocalStore.setUserLoggedIn(true);
+   private void UserLogIn() {
         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
     }
 
 
     private void goback() {
-
         startActivity(new Intent(this, MainActivity.class));
     }
 

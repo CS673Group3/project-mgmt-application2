@@ -3,12 +3,28 @@ package com.example.bryan.teamproject;
 /**
  * Created by Bryan on 3/25/16.
  */
+    import android.app.ProgressDialog;
+    import android.content.Context;
+    import android.os.AsyncTask;
+
     import java.io.BufferedReader;
     import java.io.DataOutputStream;
     import java.io.InputStreamReader;
     import java.net.HttpURLConnection;
     import java.net.URL;
+    import java.util.ArrayList;
 
+    import org.apache.http.HttpConnection;
+    import org.apache.http.NameValuePair;
+    import org.apache.http.client.HttpClient;
+    import org.apache.http.client.entity.UrlEncodedFormEntity;
+    import org.apache.http.client.methods.HttpPost;
+    import org.apache.http.impl.client.DefaultHttpClient;
+    import org.apache.http.message.BasicNameValuePair;
+    import org.apache.http.params.BasicHttpParams;
+    import org.apache.http.params.HttpConnectionParams;
+    import org.apache.http.params.HttpParams;
+    import org.json.JSONArray;
     import org.json.JSONException;
     import org.json.JSONObject;
 
@@ -75,7 +91,10 @@ package com.example.bryan.teamproject;
             in.close();
 
             //print result
-            System.out.println(response.toString());
+            JSONArray arrays = new JSONArray(response.toString());
+            for(int i=0; i < arrays.length(); i++){
+                System.out.println(" "+arrays.get(i).toString()+" ");
+            }
 
         }
 
@@ -153,24 +172,72 @@ package com.example.bryan.teamproject;
             return response;
         }
 
-
-        /*public static void main(String[] args) {
-            TokenTest test = new TokenTest();
-
-            try {
-                test.getToken();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            System.out.println(test.getTokenValue());
-
-            try {
-                test.sendGet();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }*/
     }
+class ServerRequests{
+    ProgressDialog progressDialog;
+    //private final String localhost = "http://127.0.0.1:8000/";
+    private final String serverAddress = "http://128.197.103.77/";
+    private final int connection_timeout = 1000*15;
+    //String api_getProjects = "api/projects/";
+    private final String api_getRegister = "api/";
+
+    public ServerRequests(Context context){
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Processing");
+        progressDialog.setMessage("Please Wait...");
+
+    }
+   public void storeUserDataInBackground(User user, GetUserCallback userCallBack){
+       progressDialog.show();
+       new storeUserDataAsyncTask(user, userCallBack).execute();
+   }
+
+    public void fetchUserDataInBackground(User user, GetUserCallback callback){
+      progressDialog.show();
+    }
+
+    public class storeUserDataAsyncTask extends AsyncTask<Void, Void, Void>{
+        User user;
+        GetUserCallback userCallback;
+        public storeUserDataAsyncTask(User user, GetUserCallback callback){
+            this.user = user;
+            this.userCallback = callback;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //Data to send to server
+            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
+            dataToSend.add(new BasicNameValuePair("firstname",user.Firstname));
+            dataToSend.add(new BasicNameValuePair("lastname",user.Lastname));
+            dataToSend.add(new BasicNameValuePair("username",user.username));
+            dataToSend.add(new BasicNameValuePair("password", user.passWord));
+            dataToSend.add(new BasicNameValuePair("email",user.email));
+
+            //Set to servertimeouts and requests
+            HttpParams httpRequestParams = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, connection_timeout);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, connection_timeout);
+
+            //set client
+            HttpClient client = new DefaultHttpClient(httpRequestParams);
+            HttpPost post = new HttpPost(serverAddress+api_getRegister);
+            try {
+                post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                client.execute(post);
+            } catch(Exception e){
+                  e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            userCallback.done(null);
+            super.onPostExecute(aVoid);
+        }
+    }
+}
