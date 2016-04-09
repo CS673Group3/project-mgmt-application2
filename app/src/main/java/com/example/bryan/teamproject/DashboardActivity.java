@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import java.lang.reflect.Array;
 
-public class DashboardActivity extends Activity implements OnClickListener, OnTouchListener{
+public class DashboardActivity extends AppCompatActivity implements OnClickListener, OnTouchListener{
 
     private ImageButton project_add_btn;
     private ListView project_listView;
