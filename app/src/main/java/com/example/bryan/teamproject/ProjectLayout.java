@@ -1,5 +1,6 @@
 package com.example.bryan.teamproject;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -13,18 +14,20 @@ import android.content.Intent;
 /**
  * Created by ChihWu on 3/22/16.
  */
-public class ProjectLayout extends RelativeLayout implements OnClickListener{
+public class ProjectLayout extends RelativeLayout implements OnClickListener {
 
     private Context context;
     private CheckBox completed_checkBox;
     private TextView project_name_txtView;
     private TextView project_description_txtView;
 
+
     private Project project;
 
     public ProjectLayout(Context context)
     {
         super(context);
+      // this.context = context;
     }
 
     public ProjectLayout(Context context, Project project)
@@ -39,7 +42,6 @@ public class ProjectLayout extends RelativeLayout implements OnClickListener{
         completed_checkBox = (CheckBox)findViewById(R.id.completed_checkBox);
         project_name_txtView = (TextView)findViewById(R.id.project_name_txtView);
         project_description_txtView = (TextView)findViewById(R.id.project_description_txtView);
-
         completed_checkBox.setOnClickListener(this);
         this.setOnClickListener(this);
 
@@ -54,15 +56,15 @@ public class ProjectLayout extends RelativeLayout implements OnClickListener{
         /*
            More logics will be implemented here
          */
-        project_name_txtView.setText(p.getName());
+        project_name_txtView.setText(p.title);
 
-        if(project.getDescription().equalsIgnoreCase(""))
+        if(project.description.equalsIgnoreCase(""))
         {
             project_description_txtView.setVisibility(GONE);
         }
         else
         {
-            project_description_txtView.setText(project.getDescription());
+            project_description_txtView.setText(project.description);
         }
 
         if(project.getCompleted()=="1")
@@ -83,10 +85,16 @@ public class ProjectLayout extends RelativeLayout implements OnClickListener{
             case R.id.completed_checkBox:
                 break;
             default: //when user clicks anywhere except the checkbox, then we go the ProjectInfoActivity.java
-                Intent intent = new Intent(context, ProjectProfileActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                context.startActivity(new Intent(this.context, ProjectProfileActivity.class));
         }
     }
+    /*
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        refreshProjectList();
+    }
+    */
 
 }

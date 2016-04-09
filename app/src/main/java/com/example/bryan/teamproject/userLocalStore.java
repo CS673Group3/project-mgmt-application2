@@ -16,19 +16,14 @@ public class userLocalStore {
 
     public static void storeUserData(User user) {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putString("firstname", user.Firstname);
-        spEditor.putString("lastname", user.Lastname);
         spEditor.putString("username", user.username);
         spEditor.putString("password", user.passWord);
-        spEditor.putString("email", user.email);
         spEditor.putString("token", user.token);
         spEditor.commit();
     }
 
+
     public User getLoggedInUser() {
-        String firstName = userLocalDatabase.getString("firstname", "");
-        String lastName = userLocalDatabase.getString("lastname", "");
-        String email = userLocalDatabase.getString("email", "");
         String username = userLocalDatabase.getString("username", "");
         String password = userLocalDatabase.getString("password","");
         String token = userLocalDatabase.getString("token", "");
@@ -54,35 +49,15 @@ public class userLocalStore {
         }
     }
 
-    public static void setUserLoggedIn(boolean temp) {
+    public static void setUserLoggedIn(boolean loggedIn) {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        spEditor.putBoolean("loggedIn", temp);
+        spEditor.putBoolean("loggedIn", loggedIn);
         spEditor.commit();
     }
-
 
     public void clearUserData() {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
         spEditor.clear();
         spEditor.commit();
-    }
-
-    public boolean authenticate(String username, String password){
-        TokenTest test = new TokenTest(username, password);
-        try {
-            test.getToken();
-            System.out.println("passed: " + test.getTokenValue());
-            User user = new User(username, password, test.getTokenValue());
-            storeUserData(user);
-            setUserLoggedIn(true);
-            //test.sendGet();
-            return true;
-        }
-
-        catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
     }
 }

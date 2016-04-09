@@ -1,7 +1,9 @@
 package com.example.bryan.teamproject;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,47 +19,56 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 
-public class DashboardActivity extends AppCompatActivity implements OnClickListener, OnTouchListener{
+public class DashboardActivity extends Activity implements OnClickListener, OnTouchListener{
 
     private ImageButton project_add_btn;
     private ListView project_listView;
+    private userLocalStore localStore;
+    private  Project project;
+    private ArrayList<Project> projects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
         project_add_btn = (ImageButton)findViewById(R.id.project_add_button);
         project_add_btn.setOnClickListener(this);
-
         project_listView = (ListView)findViewById(R.id.project_listView);
-        refreshProjectList();
+        localStore = new userLocalStore(getApplicationContext());
+        projects =  new ArrayList<Project>();
+         project =  new Project();
+         refreshProjectList();
     }
 
     public void refreshProjectList()
     {
         Context context = getApplicationContext();
-        ArrayList<Project> projects = new ArrayList<Project>();
-
-        Project p1 = new Project(1, "Facebook2", "This ia gonna be fun.", "1", "0");
-        Project p2 = new Project(2, "AlphaGo2", "This ia gonna rock.", "1", "0");
-
-        projects.add(p1);
-        projects.add(p2);
+        projects = new ArrayList<Project>();
+        for(int i=0; i < project.getOwner().size(); i++){
+            Project p1 = new Project(project.getProjectId().get(i), project.getTitle().get(i), project.getDescription().get(i), "1", "0");
+            projects.add(p1);
+        }
 
         ProjectListAdapter adapter = new ProjectListAdapter(context, projects);
         project_listView.setAdapter(adapter);
+
+        Toast.makeText(this,Integer.toString(projects.size()), Toast.LENGTH_SHORT ).show();
     }
 
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+    }
 
     @Override
-    public void onResume()
-    {
+    protected void onResume() {
         super.onResume();
-        refreshProjectList();
+
     }
 
     @Override
@@ -77,6 +88,12 @@ public class DashboardActivity extends AppCompatActivity implements OnClickListe
             case R.id.change_password:
                 return true;
             case R.id.log_out:
+                localStore.clearUserData();
+                project.getDescription().clear();
+                project.getTitle().clear();
+                project.getOwner().clear();
+                project.getProjectId().clear();
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -100,7 +117,20 @@ public class DashboardActivity extends AppCompatActivity implements OnClickListe
 
                 newFragment.show(ft, "add new project");
                 break;
+            //case android.R.id.home :
+
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        projects.clear();
+        project.getDescription().clear();
+        project.getTitle().clear();
+        project.getOwner().clear();
+        project.getProjectId().clear();
+        startActivity(new Intent(this, ProfileActivity.class));
     }
 
 

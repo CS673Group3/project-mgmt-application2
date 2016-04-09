@@ -25,7 +25,7 @@ import java.io.Console;
 public class User {
     String Firstname, Lastname, username, passWord, email, token;
     Context context;
-    TokenTest test;
+    //TokenTest test;
     userLocalStore localstore;
     /**
      * method to store data
@@ -55,5 +55,9 @@ public class User {
         this.token = token;
     }
 
+    public User(String Username, String Password) {
+        this.username = Username;
+        this.passWord = Password;
+    }
 
 }

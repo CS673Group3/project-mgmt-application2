@@ -15,6 +15,4 @@ public class ProjectInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project_info);
     }
 
-
-
 }

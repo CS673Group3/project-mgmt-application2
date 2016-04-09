@@ -1,17 +1,19 @@
 package com.example.bryan.teamproject;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class signin extends AppCompatActivity {
+public class signin extends Activity {
     EditText userName, passWord;
     Button signIn;
     ImageButton backbutton;
@@ -34,8 +36,8 @@ public class signin extends AppCompatActivity {
                 switch (v.getId()) {
                     case R.id.submit:
                         //v.setEnabled(false);
-                        userName.setEnabled(false);
-                        passWord.setEnabled(false);
+                       // userName.setEnabled(false);
+                       // passWord.setEnabled(false);
                         String username = userName.getText().toString();
                         String password = passWord.getText().toString();
                         if (username.length() == 0) {
@@ -48,16 +50,8 @@ public class signin extends AppCompatActivity {
                             passWord.requestFocus();
                             passWord.setError("FIELD CANNOT BE EMPTY, PLEASE ENTER CORRECT PASSWORD");
                         } else {
-
-                            if(localStore.authenticate(username, password)==true){
-                                Toast.makeText(getApplicationContext(), "Validation Successful", Toast.LENGTH_LONG).show();
-                                UserLogIn(); //set userlogin in to true and navigate to next page
-                            }
-
-                            else {
-                                Toast.makeText(getApplicationContext(), "User could not be validated for a token", Toast.LENGTH_LONG).show();
-                            }
-
+                             User user = new User(username, password);
+                             authenticate(user);
                         }
                         break;
                     case R.id.forgotPassword:
@@ -76,10 +70,41 @@ public class signin extends AppCompatActivity {
         backbutton.setOnClickListener(handler);
     }
 
-   private void UserLogIn() {
-        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+    private void authenticate(User user) {
+        ServerRequests serverRequests = new ServerRequests(getApplicationContext());
+        serverRequests.fetchUserDataInBackground(user, new GetUserCallback() {
+            @Override
+            public void done(User returnedUser) {
+
+                if (returnedUser == null) {
+                    showErrorMessage();
+                    userLocalStore.setUserLoggedIn(false);
+                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    logUserIn(returnedUser);
+                }
+            }
+        });
     }
 
+    private void showErrorMessage() {
+        AlertDialog.Builder dialogbuileder = new AlertDialog.Builder(this);
+        dialogbuileder.setMessage("User could not be validated for a token");
+        dialogbuileder.setPositiveButton("Ok", restart());
+        dialogbuileder.show();
+
+    }
+
+    private DialogInterface.OnClickListener restart() {
+        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        return null;
+    }
+
+    private void logUserIn(User returnedUser){
+        userLocalStore.storeUserData(returnedUser);
+        userLocalStore.setUserLoggedIn(true);
+        startActivity(new Intent(this, ProfileActivity.class));
+    }
 
     private void goback() {
         startActivity(new Intent(this, MainActivity.class));
