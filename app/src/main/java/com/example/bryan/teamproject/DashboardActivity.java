@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
@@ -21,9 +22,10 @@ import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.widget.Toast;
 
+
 import java.lang.reflect.Array;
 
-public class DashboardActivity extends AppCompatActivity implements OnClickListener, OnTouchListener{
+public class DashboardActivity extends AppCompatActivity implements OnClickListener{
 
     private ImageButton project_add_btn;
     private ListView project_listView;
@@ -38,10 +40,12 @@ public class DashboardActivity extends AppCompatActivity implements OnClickListe
         project_add_btn = (ImageButton)findViewById(R.id.project_add_button);
         project_add_btn.setOnClickListener(this);
         project_listView = (ListView)findViewById(R.id.project_listView);
+
         localStore = new userLocalStore(getApplicationContext());
         projects =  new ArrayList<Project>();
-         project =  new Project();
-         refreshProjectList();
+        project =  new Project();
+        refreshProjectList();
+
     }
 
     public void refreshProjectList()
@@ -134,20 +138,8 @@ public class DashboardActivity extends AppCompatActivity implements OnClickListe
     }
 
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event)
-    {
 
-        switch(v.getId())
-        {
-            case R.id.project_add_button:
 
-                return true;
-
-            default:
-                return true;
-        }
-    }
 
 
 }

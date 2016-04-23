@@ -1,8 +1,11 @@
 package com.example.bryan.teamproject;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -13,6 +16,11 @@ public class ProjectProfileActivity extends FragmentActivity {
 
     private TabHost tabHost;
     private TabManager tabManager;
+    private String selectedProjectId;
+    private String selectedProjectName;
+    private String selectedProjectDescription;
+    private boolean selectedProjectIsCompleted;
+
 
     @TargetApi(11)
     @Override
@@ -26,12 +34,15 @@ public class ProjectProfileActivity extends FragmentActivity {
         tabManager = new TabManager(this, tabHost, R.id.realtabcontent);
 
 
-        String[] tabNames = {"Icebox", "Iteration", "UserList"};
+        Intent intent = getIntent();
+
+
+        String[] tabNames = {"Info", "Icebox", "Iteration", "UserList"};
         for(String tabName : tabNames)
         {
             TabSpec tabSpec = tabHost.newTabSpec(tabName);
             tabSpec.setIndicator(tabName);
-            tabManager.addTab(tabSpec, TabListFragment.class, null);
+            tabManager.addTab(tabSpec, TabFragment.class, null);
         }
 
         if(savedInstanceState != null)
@@ -39,7 +50,16 @@ public class ProjectProfileActivity extends FragmentActivity {
             tabHost.setCurrentTabByTag(savedInstanceState.getString("tab"));
         }
 
-        getActionBar();
+        // this if block has to follow the previous savedInstanceState if block
+        if(intent.getStringExtra("currentSelectedTabTag") != null)
+        {
+            Log.i("ATTENTIONS", intent.getStringExtra("currentSelectedTabTag"));
+            tabHost.setCurrentTabByTag(intent.getStringExtra("currentSelectedTabTag"));
+        }
+
+
+        // change the color of the default action bar to our dark blue theme
+        getActionBar().setTitle(Html.fromHtml("<font color='#FFFFFF'>ProTeam </font>"));
     }
 
     @Override
