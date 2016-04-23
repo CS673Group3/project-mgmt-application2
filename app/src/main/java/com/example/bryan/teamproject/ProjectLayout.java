@@ -18,6 +18,7 @@ public class ProjectLayout extends RelativeLayout implements OnClickListener{
 
     private Context context;
     private CheckBox completed_checkBox;
+    private TextView project_id_txtView;
     private TextView project_name_txtView;
     private TextView project_description_txtView;
 
@@ -40,6 +41,7 @@ public class ProjectLayout extends RelativeLayout implements OnClickListener{
         inflater.inflate(R.layout.project, this, true);
 
         completed_checkBox = (CheckBox)findViewById(R.id.completed_checkBox);
+        project_id_txtView = (TextView)findViewById(R.id.project_id_txtView);
         project_name_txtView = (TextView)findViewById(R.id.project_name_txtView);
         project_description_txtView = (TextView)findViewById(R.id.project_description_txtView);
         completed_checkBox.setOnClickListener(this);
@@ -88,6 +90,10 @@ public class ProjectLayout extends RelativeLayout implements OnClickListener{
             default: //when user clicks anywhere except the checkbox, then we go the ProjectInfoActivity.java
                 Intent intent = new Intent(context, ProjectProfileActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("project id", project_id_txtView.getText());
+                intent.putExtra("project name", project_name_txtView.getText());
+                intent.putExtra("project description", project_description_txtView.getText());
+                intent.putExtra("project completed", completed_checkBox.isChecked());
                 context.startActivity(intent);
         }
     }

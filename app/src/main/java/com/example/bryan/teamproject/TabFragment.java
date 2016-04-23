@@ -88,12 +88,12 @@ public class TabFragment extends Fragment implements OnClickListener, OnItemClic
         this.container = container;
 
         parentActivity = (ProjectProfileActivity)getActivity();
-        /*
+
         projectId = parentActivity.getProjectId();
         projectName = parentActivity.getSelectedProjectName();
         projectDescription = parentActivity.getSelectedProjectDescription();
-        selectedProject = ProjectManager.findProjectByName(projectName);
-        */
+        //selectedProject = ProjectManager.findProjectByName(projectName);
+
 
         TabHost tabHost = (TabHost)container.getParent().getParent();
 

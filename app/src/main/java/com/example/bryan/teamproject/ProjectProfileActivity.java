@@ -35,6 +35,10 @@ public class ProjectProfileActivity extends FragmentActivity {
 
 
         Intent intent = getIntent();
+        selectedProjectId = intent.getStringExtra("project id");
+        selectedProjectName = intent.getStringExtra("project name");
+        selectedProjectDescription = intent.getStringExtra("project description");
+        selectedProjectIsCompleted = intent.getBooleanExtra("project completed", false);
 
 
         String[] tabNames = {"Info", "Icebox", "Iteration", "UserList"};
@@ -91,5 +95,24 @@ public class ProjectProfileActivity extends FragmentActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+
+
+    public String getProjectId() { return selectedProjectId; }
+
+    public String getSelectedProjectName()
+    {
+        return selectedProjectName;
+    }
+
+    public String getSelectedProjectDescription()
+    {
+        return selectedProjectDescription;
+    }
+
+    public Boolean getSelectedProjectCompletedStatus()
+    {
+        return selectedProjectIsCompleted;
     }
 }

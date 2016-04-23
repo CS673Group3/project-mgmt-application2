@@ -13,6 +13,19 @@
         android:button="@drawable/btn_check" />
 
     <TextView
+        android:id="@+id/project_id_txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/completed_checkBox"
+        android:layout_alignBottom="@+id/completed_checkBox"
+        android:layout_toRightOf="@+id/completed_checkBox"
+        android:text="@string/project_id"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
+
+    <TextView
         android:id="@+id/project_name_txtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
