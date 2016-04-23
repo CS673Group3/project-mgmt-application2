@@ -4,10 +4,13 @@ package com.example.bryan.teamproject;
  * Created by Bryan on 3/25/16.
  */
 
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +19,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -28,7 +32,7 @@ import java.util.Map;
 
 public class ServerRequests {
     private final String serverAddress = "http://128.197.103.77/";
-    //private final String serverAddress = "http://155.41.96.36:8000/";
+    //private final String serverAddress = "http://155.41.100.68:80/";
     private final int connection_timeout = 1000 * 15;
     private final String api_getRegister = "apisignup/";
     private final String api_token = "get-token/";
@@ -68,27 +72,32 @@ public class ServerRequests {
 
         @Override
         protected Void doInBackground(Void... params) {
-            //Data to send to server
-            Map<String, String> dataToSend = new HashMap<>();
-            dataToSend.put("firstname", user.Firstname);
-            dataToSend.put("lastname", user.Lastname);
-            dataToSend.put("username", user.username);
-            dataToSend.put("password", user.passWord);
-            dataToSend.put("email", user.email);
-            //json object
-            String encodedStr = getEncodedData(dataToSend);
             BufferedReader reader = null;
             try {
                 //connect ot URL
                 URL url = new URL(serverAddress + api_getRegister);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                //Post Method
-                con.setRequestMethod("POST");
 
+                String json = "";
+                //build jsonObject
+                JSONObject object = new JSONObject();
+                object.accumulate("firstname", user.Firstname);
+                object.accumulate("lastname", user.Lastname);
+                object.accumulate("username", user.username);
+                object.accumulate("password", user.passWord);
+                object.accumulate("email", user.email);
+
+                //convert JSONOBJECT to JSON to string
+                json = object.toString();
+                //POST METHOD
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Accept","application/json");
+                con.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+                con.setRequestProperty("Content-Language", "en-US");
                 con.setDoOutput(true);
                 OutputStreamWriter writer = new OutputStreamWriter(con.getOutputStream());
-                //Writing dataToSend to outputstreamwriter
-                writer.write(encodedStr);
+                //Writing object to outputstreamwriter
+                writer.write(String.valueOf(json));
                 writer.flush();
                 StringBuilder sb = new StringBuilder();
                 reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -120,19 +129,6 @@ public class ServerRequests {
             progressDialog.dismiss();
             userCallback.done(null);
             super.onPostExecute(aVoid);
-        }
-
-        private String getEncodedData(Map<String, String> data) {
-            StringBuilder sb = new StringBuilder();
-            for (String key : data.keySet()) {
-                String value = null;
-                try {
-                    value = URLEncoder.encode(data.get(key), "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-            return sb.toString();
         }
     }
 
@@ -231,6 +227,7 @@ public class ServerRequests {
             userCallback.done(returnedUser);
             super.onPostExecute(returnedUser);
         }
+
     }
 
 

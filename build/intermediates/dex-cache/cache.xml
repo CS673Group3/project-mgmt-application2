@@ -1,2 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.1_5dd5f8484a5f64f15825809a768934ea404e6091.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.2.1_d02f5bd635a735c06523e9dd6c608639e5e41557.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.1_ae6c4642f7fa05f7d0c063a6f4e61d6fc054a610.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\libs\TabManager.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="25b6223c3d4b5b4df1b9f0a35427cc82b0cc890a">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\TabManager_5bc181e7aba0fb1e7c2ce23b0a6ee1c5747c0498.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.2.1_b080b73d620409f41ba4891babd4cda1cbc03d38.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.2.1_2d46af3a20e71d73d40a9cdad18d9753b17c99f5.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\libs\httpcore-4.2.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5e92ec56abe188b865642a14e1a037c1253fc42e">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\httpcore-4.2.3_a4ebcc6c0c176114f331eda495f561278167a81e.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.2.1_4ced4a32b57226f4fe0a33aedbaa2410a8ae33be.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\libs\jtds-1.2.8.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="111abf08f69f350923d34d64267a67d7367d4230">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\jtds-1.2.8_80a17f05850dc4499afca03835219432b11e5975.jar" />
+    </item>
+    <item
+        jar="D:\Users\bkabuye\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="D:\Users\bkabuye\Desktop\project-mgmt-application2\app\build\intermediates\pre-dexed\debug\gson-2.2.4_be71d1803416ac77a9773aeb0f27e7f0ca1e2a56.jar" />
+    </item>
+
+</items>

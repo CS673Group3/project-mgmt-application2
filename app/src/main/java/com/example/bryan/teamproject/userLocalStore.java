@@ -49,10 +49,25 @@ public class userLocalStore {
         }
     }
 
+
     public static void setUserLoggedIn(boolean loggedIn) {
         SharedPreferences.Editor spEditor = userLocalDatabase.edit();
         spEditor.putBoolean("loggedIn", loggedIn);
         spEditor.commit();
+    }
+
+    public static void setUsers(boolean Exist){
+        SharedPreferences.Editor spEditor = userLocalDatabase.edit();
+        spEditor.putBoolean("Exist", Exist);
+        spEditor.commit();
+    }
+    public boolean userCheckExist(){
+        if(userLocalDatabase.getBoolean("Exist", false)== true){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void clearUserData() {
