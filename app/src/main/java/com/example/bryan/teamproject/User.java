@@ -13,8 +13,8 @@ import org.json.JSONObject;
 import java.io.Console;
 
 public class User {
-    String Firstname, Lastname, username, passWord, email, token;
-    Context context;
+    public String Firstname, Lastname, username, passWord, email, token;
+    public Context context;
     //TokenTest test;
     userLocalStore localstore;
     /**

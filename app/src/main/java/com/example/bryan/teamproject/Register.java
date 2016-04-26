@@ -42,7 +42,6 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 //v.setEnabled(false);
                 pattern = Pattern.compile(EMAIL_PATTERN);
-
                 switch (v.getId()) {
                     case R.id.SignUpbtn:
                         String FirstName = userName.getText().toString();
@@ -51,7 +50,7 @@ public class Register extends AppCompatActivity {
                         String Email = email.getText().toString();
                         String Pass = passWord.getText().toString();
                         String confPass = confirmPassWord.getText().toString();
-                       /* if (FirstName.length() == 0 || LastName.length() == 0 || Username.length() == 0 || Email.length() == 0 || Pass.length() == 0 || confPass.length() == 0) {
+                       if (FirstName.length() == 0 || LastName.length() == 0 || Username.length() == 0 || Email.length() == 0 || Pass.length() == 0 || confPass.length() == 0) {
                             userName.requestFocus();
                             passWord.requestFocus();
                             confirmPassWord.requestFocus();
@@ -85,7 +84,7 @@ public class Register extends AppCompatActivity {
                                 registerNewUser(registeredData);
                                 Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
                             }
-                        }*/
+                        }
                         User registeredData = new User(FirstName, LastName, Username, Pass, Email);
                         registerNewUser(registeredData);
                         Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
