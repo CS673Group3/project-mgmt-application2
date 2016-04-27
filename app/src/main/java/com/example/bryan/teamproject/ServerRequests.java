@@ -47,17 +47,17 @@ public class ServerRequests {
     }
 
     public void storeUserDataInBackground(User user, GetUserCallback userCallBack) {
-        //progressDialog.show();
+      //  progressDialog.show();
         new storeUserDataAsyncTask(user, userCallBack).execute();
     }
 
     public void fetchUserDataInBackground(User user, GetUserCallback callback) {
-        //progressDialog.show();
+       // progressDialog.show();
         new fetchUserDataAsyncTask(user, callback).execute();
     }
 
     public void fetchProjectDataInBackground(User user, GetProjectCallback callback) {
-        //progressDialog.show();
+       // progressDialog.show();
         new fetchProjectDataAsyncTask(user, callback).execute();
     }
 
@@ -293,7 +293,7 @@ public class ServerRequests {
 
         @Override
         protected void onPostExecute(Boolean loaded) {
-            //progressDialog.dismiss();
+            progressDialog.dismiss();
             projectCallback.done(loaded);
             super.onPostExecute(loaded);
         }

@@ -88,10 +88,10 @@ public class signin extends Activity {
     }
 
     private void showErrorMessage() {
-        AlertDialog.Builder dialogbuileder = new AlertDialog.Builder(this);
-        dialogbuileder.setMessage("User could not be validated for a token");
-        dialogbuileder.setPositiveButton("Ok", restart());
-        dialogbuileder.show();
+        AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
+        dialogbuilder.setMessage("User could not be validated for a token");
+        dialogbuilder.setPositiveButton("Ok", restart());
+        dialogbuilder.show();
 
     }
 
