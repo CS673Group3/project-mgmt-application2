@@ -27,7 +27,6 @@ public class signin extends Activity {
         passWord = (EditText) findViewById(R.id.password_input);
         signIn = (Button) findViewById(R.id.submit);
         forGot = (TextView) findViewById(R.id.forgotPassword);
-        backbutton = (ImageButton) findViewById(R.id.back_SignIn);
         localStore = new userLocalStore(getApplicationContext());
 
         View.OnClickListener handler = new View.OnClickListener() {
@@ -58,16 +57,18 @@ public class signin extends Activity {
                         v.setEnabled(false);
                         // this to be filled in later
                         forgot();
-                    case R.id.back_SignIn:
+                        break;
+                  /*  case R.id.back_SignIn:
                         v.setEnabled(false);
                         //this to be filled in later
-                        goback();
+                        goback();*/
+
                 }
             }
         };
         signIn.setOnClickListener(handler);
         forGot.setOnClickListener(handler);
-        backbutton.setOnClickListener(handler);
+       // backbutton.setOnClickListener(handler);
     }
 
     private void authenticate(User user) {

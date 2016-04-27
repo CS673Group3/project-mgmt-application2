@@ -39,7 +39,7 @@ public class LoginFailTests {
         onView(withId(R.id.username_input)).perform(ViewActions.typeText(username));
         onView(withId(R.id.password_input)).perform(ViewActions.typeText(password));
         onView(withId(R.id.submit)).perform(ViewActions.closeSoftKeyboard(), ViewActions.click());
-        //onView(withText(TeamName)).check(ViewAssertions.matches(isDisplayed()));
+
     }
 
 

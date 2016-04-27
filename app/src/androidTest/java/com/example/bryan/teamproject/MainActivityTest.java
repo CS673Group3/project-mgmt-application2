@@ -42,8 +42,8 @@ public class MainActivityTest {
 
     @Before
     public void setUp() {
-        username = "josh";
-        password = "josh";
+        username = "brian";
+        password = "brian";
         TeamName = "ProTeam";
         mainActivity = main.getActivity();
     }

@@ -26,8 +26,8 @@ public class TokenRetrievalPassTests {
 
     @Before
     public void setUp() {
-        username = "josh";
-        password = "josh";
+        username = "brian";
+        password = "brian";
         TeamName = "ProTeam";
         localStore = new userLocalStore(main.getActivity());
     }

@@ -34,8 +34,7 @@ public class Register extends AppCompatActivity {
         firstname = (EditText) findViewById(R.id.firstname_Input);
         lastname = (EditText) findViewById(R.id.lastname_input);
         email = (EditText) findViewById(R.id.Email_input);
-        signUp = (Button) findViewById(R.id.SignUpbtn);
-        back = (ImageButton) findViewById(R.id.back);
+        signUp = (Button) findViewById(R.id.Register);
 
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
@@ -43,7 +42,7 @@ public class Register extends AppCompatActivity {
                 //v.setEnabled(false);
                 pattern = Pattern.compile(EMAIL_PATTERN);
                 switch (v.getId()) {
-                    case R.id.SignUpbtn:
+                    case R.id.Register:
                         String FirstName = userName.getText().toString();
                         String LastName = lastname.getText().toString();
                         String Username = userName.getText().toString();
@@ -89,14 +88,11 @@ public class Register extends AppCompatActivity {
                         registerNewUser(registeredData);
                         Toast.makeText(Register.this, "User has been Successful Added", Toast.LENGTH_LONG).show();
                         break;
-                    case R.id.back:
-                        goback();
-                        break;
+
                 }
             }
         };
         signUp.setOnClickListener(handler);
-        back.setOnClickListener(handler);
     }
 
     private void goback() {

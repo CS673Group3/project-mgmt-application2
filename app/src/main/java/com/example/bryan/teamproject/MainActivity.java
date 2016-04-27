@@ -9,14 +9,13 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button signIn, signUp;
-    String selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         signIn = (Button) findViewById(R.id.Login);
-        signUp = (Button) findViewById(R.id.SignUp);
+        signUp = (Button) findViewById(R.id.register);
         View.OnClickListener handler = new View.OnClickListener() {
 
             @Override
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, signin.class));
                     Log.i("Content", "Signin home");
                 break;
-                    case R.id.SignUp:
+                    case R.id.register:
                         startActivity(new Intent(MainActivity.this, Register.class));
                         Log.i("Content", "SignUp home");
                 break;

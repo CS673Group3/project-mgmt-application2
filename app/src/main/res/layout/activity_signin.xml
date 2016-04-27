@@ -9,22 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.bryan.teamproject.signin">
 
-    <ImageButton
-        android:id="@+id/back_SignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:adjustViewBounds="true"
-        android:background="@color/white"
-        android:gravity="center"
-        android:maxHeight="50dp"
-        android:maxWidth="50dp"
-        android:onClick="setContentView"
-        android:scaleType="fitCenter"
-        android:src="@mipmap/back"
-        android:textAllCaps="false" />
-
     <TextView
         android:id="@+id/UsernameLabel"
         android:layout_width="wrap_content"
@@ -32,7 +16,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_below="@+id/back_SignIn"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="100dp"
         android:fontFamily="sans-serif"
